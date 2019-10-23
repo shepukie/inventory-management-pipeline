@@ -72,9 +72,11 @@ pipeline {
           }
         }
         
-        stage('Teste'){
+        stage('ExportingOp'){
             steps{
-                echo 'Testando'
+                echo 'Exporting app from DEV'
+                sh "./gradlew exportingOperation -uri=${env.PEGA_DEV} -username=${IMS_USER} -password=${IMS_PASSWORD} -vfrom=${WORKSPACE}"
+                echo "Exporting Status : ${env.EXP_STATUS}"
             }
             
         }
