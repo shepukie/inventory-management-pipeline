@@ -306,6 +306,37 @@ task getMergeStatus(type: org._10ne.gradle.rest.RestTask) {
 	}
 }
 
+task exportingOperation(type: org._10ne.gradle.rest.RestTask){
+	group 'Pega'
+	description 'Exporting from dev.'
+
+	def branch = findProperty('branch')
+	def targetURL = findProperty('targetURL')
+	def mergePolicy = 'Highest'  //Alternative is to set it to New to create new ruleset versions on each merge
+
+	httpMethod = 'post'
+	uri = "${env.PEGA_DEV}/prweb/PRRestService/SystemManagement/v2/Export"
+	
+	username = findProperty(${IMS_USER})
+	password = findProperty(${IMS_PASSWORD})
+	
+	requestBody = [Export: 'Pega-ImportExport:07-10-27',
+  				   pxRulesetPassword: 'devops']
+
+	contentType = groovyx.net.http.ContentType.JSON
+	responseHandler = { response ->
+		resultHandler.putResult("merge.id", response.ID)
+		println "Merge Response Queue ID : $response.ID"
+	}
+
+	doFirst {
+		// Validate project properties
+		if (!project.hasProperty("branch") || !project.hasProperty('targetURL')) {
+			throw new InvalidUserDataException("Must supply '-Pbranch' and '-PtargetURL'")
+		}
+	}	
+}
+
 task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
 	description 'Execute PegaUnit tests'
