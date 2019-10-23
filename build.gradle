@@ -316,10 +316,13 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 	username = findProperty(pegaUsername)
 	password = findProperty(pegaPassword)
 	
+	httpMethod = 'get'
+	uri = "/prweb/PRRestService/SystemManagement/v2/Export/${targetURL}"	
+	
 	task copyDocs(type: Copy) {
     		from '${WORKSPACE}'
     		into exportFolder
-	}
+	
 
 	doFirst {
 		// Validate project properties
