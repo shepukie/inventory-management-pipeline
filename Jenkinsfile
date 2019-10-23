@@ -75,7 +75,7 @@ pipeline {
         stage('ExportingOp'){
             steps{
                 echo 'Exporting app from DEV'
-                sh "./gradlew exportingOperation -uri=${env.PEGA_DEV} -username=${IMS_USER} -password=${IMS_PASSWORD} -vfrom=${WORKSPACE}"
+                sh "./gradlew exportingOperation -uri=${env.PEGA_DEV} -username=${IMS_USER} -password=${IMS_PASSWORD}"
                 echo "Exporting Status"
             }
             
