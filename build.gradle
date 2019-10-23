@@ -317,7 +317,7 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 	password = findProperty(pegaPassword)
 	
 	task copyDocs(type: Copy) {
-    		from ${WORKSPACE}
+    		from '${WORKSPACE}'
     		into exportFolder
 	}
 
