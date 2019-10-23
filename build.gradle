@@ -317,8 +317,8 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 	httpMethod = 'post'
 	uri = "${targetURL}/prweb/PRRestService/SystemManagement/v2/Export"
 	
-	username = findProperty(${IMS_USER})
-	password = findProperty(${IMS_PASSWORD})
+	username = findProperty(pegaUsername)
+	password = findProperty(pegaPassword)
 	
 	requestBody = [Export: 'Pega-ImportExport:07-10-27',
   				   pxRulesetPassword: 'devops']
