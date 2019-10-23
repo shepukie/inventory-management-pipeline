@@ -71,6 +71,10 @@ pipeline {
             }
           }
         }
+        
+        stage('Teste'){
+            
+        }
 
         stage('Export from Dev') {
             steps {
