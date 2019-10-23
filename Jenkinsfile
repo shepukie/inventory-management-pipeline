@@ -73,7 +73,9 @@ pipeline {
         }
         
         stage('Teste'){
-            echo 'Testando'
+            steps{
+                echo 'Testando'
+            }
             
         }
 
