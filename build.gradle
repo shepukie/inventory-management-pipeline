@@ -312,18 +312,13 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
-	def fromdir = vfrom
-	def todir = exportFolder
-
-	httpMethod = 'post'
-	uri = "${targetURL}/prweb/PRRestService/SystemManagement/v2/Export"
 	
 	username = findProperty(pegaUsername)
 	password = findProperty(pegaPassword)
 	
 	task copyDocs(type: Copy) {
-    		from fromdir
-    		into todir
+    		from vfrom
+    		into exportFolder
 	}
 
 	doFirst {
