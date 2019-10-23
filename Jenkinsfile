@@ -71,12 +71,6 @@ pipeline {
             }
           }
         }
-        
-        stage('TesteChamada'){
-            steps{
-                echo 'Teste Pipeline'
-            }
-        }
 
         stage('Export from Dev') {
             steps {
