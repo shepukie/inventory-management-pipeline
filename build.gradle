@@ -363,10 +363,13 @@ task exportingOperation(type: Copy){
 	
 	println "Copy file"
 	
-        from "/TesteCopy/Arquivo.zip"
+        from ("/TesteCopy/Arquivo.zip")
         into "/TestePaste"
 	
-	from '/TesteCopy/Arquivo.zip'
+	from ('/TesteCopy/Arquivo.zip')
+        into '/TestePaste'
+	
+	from ('/TesteCopy')
         into '/TestePaste'
 	
 	doLast {
