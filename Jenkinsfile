@@ -74,6 +74,7 @@ pipeline {
         
         stage('Export from Artifactory'){
             steps{
+                dir ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport' + "${branchName}")
                 echo 'Exporting file to artifactory'
                 sh "./gradlew exportingOperation"
                 echo 'Exported'
