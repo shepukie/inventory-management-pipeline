@@ -359,7 +359,7 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 	}
 }
 
-task exportingOperation(type: Copy){
+task exportingOperation(type: Copy, Delete){
 	
 	println "Copy file"
 	
