@@ -74,7 +74,7 @@ pipeline {
         
         stage('Export from Artifactory'){
             steps{
-                dir (${WORKSPACE} + '/StaticContent/global/ServiceExport/')
+                dir ("${WORKSPACE}" + '/StaticContent/global/ServiceExport/')
                 echo 'Exporting file to artifactory'
                 sh "./gradlew exportingOperation"
                 echo 'Exported'
