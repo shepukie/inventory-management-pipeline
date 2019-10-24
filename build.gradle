@@ -363,8 +363,8 @@ task exportingOperation(type: Copy){
 	
 	println "Copy file"
 	
-        from file: "/TesteCopy/Arquivo.zip"
-        into file: "/TestePaste"
+        from "/TesteCopy/Arquivo.zip"
+        into "/TestePaste"
 	
 	println "Done"
 }
