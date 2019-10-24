@@ -75,6 +75,8 @@ pipeline {
         stage('Export from Artifactory'){
             steps{
                 echo 'Exporting file to artifactory'
+                sh "./gradlew exportingOperation"
+                echo 'Exported'
             }
         }
      
