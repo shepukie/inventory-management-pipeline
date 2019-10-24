@@ -359,7 +359,7 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 	}
 }
 
-task exportingOperation(type: Copy, Delete){
+task exportingOperation(type: Copy){
 	
 	println "Copy file"
 	
@@ -371,7 +371,12 @@ task exportingOperation(type: Copy, Delete){
                 todir: "/TestePaste"
     	}
 	
-	delete "/TesteCopy/Arquivo.zip"
+	task DeleteFile(type: Delete){
+	
+		delete "/TesteCopy/Arquivo.zip"
+		
+		println "Cleared"
+	}
 	
 	println "Done"
 }
