@@ -71,16 +71,6 @@ pipeline {
             }
           }
         }
-        
-        stage('ExportingOp'){
-            steps{
-                echo 'Exporting from artifactory'
-                sh "./gradlew exportingOperation"
-            
-                echo "Exporting Status"
-            }
-            
-        }
 
         stage('Export from Dev') {
             steps {
