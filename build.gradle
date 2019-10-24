@@ -375,8 +375,10 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 	contentType = groovyx.net.http.ContentType.JSON
 	
 	doLast {
-        ant.move file: "C:/TesteCopy/Request.zip",
-                 todir: "C:/TestePaste"
+        	task copyReport(type: Copy) {
+   			from file("C:/TesteCopy/Request.zip")
+    			into file("C:/TestePaste")
+			}
     		}
 		
 	doFirst {
