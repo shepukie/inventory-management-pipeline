@@ -366,16 +366,24 @@ task exportingOperation(type: Copy){
         from "/TesteCopy/Arquivo.zip"
         into "/TestePaste"
 	
+	from '/TesteCopy/Arquivo.zip'
+        into '/TestePaste'
+	
 	doLast {
         	ant.move file: "/TesteCopy/Arquivo.zip",
                 todir: "/TestePaste"
     	}
 	
-	task DeleteFile(type: Delete){
+	//task DeleteFile(type: Delete){
 	
-		delete "/TesteCopy/Arquivo.zip"
+		//delete "/TesteCopy/Arquivo.zip"
 		
-		println "Cleared"
+		//println "Cleared"
+	//}
+	
+	copy {
+		from: "/TesteCopy"
+		into: "/TestePaste"
 	}
 	
 	println "Done"
