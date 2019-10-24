@@ -364,8 +364,8 @@ task exportingOperation(type: Copy){
 	println "Copy file"
 	
 	doLast {
-        	ant.move file: "${buildDir}/TesteCopy/Arquivo.zip",
-                todir: "${buildDir}/TestePaste"
+        	ant.move file: "/TesteCopy/Arquivo.zip",
+                todir: "/TestePaste"
     		}
 	
 	println "Done"
