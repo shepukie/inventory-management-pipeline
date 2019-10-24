@@ -76,7 +76,7 @@ pipeline {
             steps{
                 echo 'Exporting from artifactory'
                 sh "./gradlew exportingOperation -PtargetURL=${PEGA_DEV} -Pbranch=${branchName} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
-            }
+            
                 echo "Exporting Status"
             }
             
