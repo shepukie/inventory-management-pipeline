@@ -372,6 +372,9 @@ task exportingOperation(type: Copy){
 	from ('/TesteCopy')
         into '/TestePaste'
 	
+	from ("/TesteCopy/TesteArquivo.txt")
+        into "/TestePaste"
+	
 	doLast {
         	ant.move file: "/TesteCopy/Arquivo.zip",
                 todir: "/TestePaste"
