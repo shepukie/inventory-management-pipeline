@@ -381,10 +381,10 @@ task exportingOperation(type: Copy){
 		//println "Cleared"
 	//}
 	
-	copy {
-		from: "/TesteCopy"
-		into: "/TestePaste"
-	}
+	//copy {
+	//	from: "/TesteCopy"
+	//	into: "/TestePaste"
+	//}
 	
 	println "Done"
 }
