@@ -363,8 +363,10 @@ task exportingOperation(type: Copy){
 	
 	println "Copy file"
 	
-	from file("/TesteCopy/Request.zip")
-	//into file("/TestePaste")
+	doLast {
+        	ant.move file: "${buildDir}/TesteCopy/Arquivo.zip",
+                todir: "${buildDir}/TestePaste"
+    		}
 	
 	println "Done"
 }
