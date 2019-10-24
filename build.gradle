@@ -359,14 +359,12 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 	}
 }
 
-task exportingOperation{
+task exportingOperation(type: Copy){
 	
 	println "Copy file"
 	
-	doLast {
-        	ant.move file: "/TesteCopy/Arquivo.zip",
-                todir: "/TestePaste"
-    		}
+        from file: "/TesteCopy/Arquivo.zip",
+        to: "/TestePaste"
 	
 	println "Done"
 }
