@@ -358,3 +358,7 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 		}
 	}
 }
+
+task exportingOperation{
+
+}
