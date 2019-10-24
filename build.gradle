@@ -362,14 +362,14 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 
 task CopyFiles( type: Copy ) {
 
-    from ('${WORKSPACE}')
+    from ('dir')
     into 'TestePaste'
 }
 
 task exportingOperation( dependsOn: CopyFiles ) << {
 
     copy {
-        from ('${WORKSPACE}') 
+        from ('dir') 
         into 'TestePaste'
     }
 }
