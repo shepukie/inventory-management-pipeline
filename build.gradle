@@ -320,8 +320,8 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 	uri = "/prweb/PRRestService/SystemManagement/v2/Export/${targetURL}"	
 	
 	task copyDocs(type: Copy) {
-    		from '${WORKSPACE}'
-    		into exportFolder
+    		from '/TextCopy/Request.zip'
+    		into '/TextPaste/Request.zip'
 		}
 
 }
