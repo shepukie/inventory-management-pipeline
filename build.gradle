@@ -363,13 +363,15 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 task CopyFiles( type: Copy ) {
 
     from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
+    include $archiveName
     into 'TestePaste'
 }
 
 task exportingOperation( dependsOn: CopyFiles ) << {
 
     copy {
-        from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport') 
+        from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
+	include $archiveName
         into 'TestePaste'
     }
 }
