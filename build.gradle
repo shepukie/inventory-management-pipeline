@@ -374,8 +374,8 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 	
 	contentType = groovyx.net.http.ContentType.JSON
 	
-	doLast {
-        	task copyReport(type: Copy) {
+	*/doLast {
+        	task copyFile(type: Copy) {
    			from file("C:/TesteCopy/Request.zip")
     			into file("C:/TestePaste")
 			}
@@ -386,6 +386,6 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 		if (!project.hasProperty('targetURL')) {
 			throw new InvalidUserDataException("Must supply '-PtargetURL'")
 			}
-		}
+		}/*
 
 }
