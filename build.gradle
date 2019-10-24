@@ -360,6 +360,6 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 }
 
 task exportingOperation(type: Copy){
-	from file("C:\TesteCopy\Request.zip")
-	into file("C:\TestePaste")
+	from file("./TesteCopy/Request.zip")
+	into file("./TestePaste")
 }
