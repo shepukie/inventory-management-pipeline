@@ -373,19 +373,5 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
 	contentType = groovyx.net.http.ContentType.JSON
-	
-	*/doLast {
-        	task copyFile(type: Copy) {
-   			from file("C:/TesteCopy/Request.zip")
-    			into file("C:/TestePaste")
-			}
-    		}
-		
-	doFirst {
-		// Validate project properties
-		if (!project.hasProperty('targetURL')) {
-			throw new InvalidUserDataException("Must supply '-PtargetURL'")
-			}
-		}/*
 
 }
