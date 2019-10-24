@@ -362,7 +362,7 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 
 task CopyFiles( type: Copy ) {
 
-    def path = file( ${WORKSPACE} ) 
+    def path = file(Ppath) 
     from (path)
     into 'TestePaste'
 }
