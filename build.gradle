@@ -383,6 +383,7 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 		// Validate project properties
 		if (!project.hasProperty('targetURL')) {
 			throw new InvalidUserDataException("Must supply '-PtargetURL'")
+			}
 		}
 
 }
