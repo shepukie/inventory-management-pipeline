@@ -360,8 +360,6 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 }
 
 
-//prepare( dependsOn: 'exportingOperation' ) {}
-
 task CopyFiles( type: Copy ) {
 
     //def warFile = file( warFileLocation ) 
@@ -372,9 +370,7 @@ task CopyFiles( type: Copy ) {
 task exportingOperation( dependsOn: CopyFiles ) << {
 
     copy {
-        //from ( 'TesteCopy' ) 
-        //into 'TestePaste'
-	
-	println "Copied"
+        from ( 'TesteCopy' ) 
+        into 'TestePaste'
     }
 }
