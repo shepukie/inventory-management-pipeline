@@ -71,6 +71,13 @@ pipeline {
             }
           }
         }
+        
+        stage('Export from Artifactory'){
+            steps{
+                echo 'Exporting file to artifactory'
+            }
+        }
+     
 
         stage('Export from Dev') {
             steps {
