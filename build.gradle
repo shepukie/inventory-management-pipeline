@@ -322,6 +322,7 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask){
 	task copyDocs(type: Copy) {
     		from '${WORKSPACE}'
     		into exportFolder
+		}
 	
 
 	doFirst {
