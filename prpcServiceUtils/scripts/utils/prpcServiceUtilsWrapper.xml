@@ -106,9 +106,10 @@
 
 	
 
-	<target name="performOperation" depends="-init, -processInstances, -cleanup">
+	<!-- <target name="performOperation" depends="-init, -processInstances, -cleanup">
 		<echo message="PegaRULES Process Commander ${prpc.service.util.action} complete."/>
 	</target>
+-->
 
 	<!-- Internal targets below. DO NOT CALL THESE EXTERNALLY - CONTENTS MAY CHANGE AT ANY TIME -->
 	<target name="-init">
