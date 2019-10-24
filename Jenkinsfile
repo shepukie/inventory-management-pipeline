@@ -72,7 +72,7 @@ pipeline {
           }
         }
         
-        stage('Export from Artifactory'){
+        stage('Export to Artifactory'){
             steps{
                 //dir ('/StaticContent/global/ServiceExport/')
                 echo 'Exporting file to artifactory'
