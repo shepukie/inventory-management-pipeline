@@ -74,7 +74,7 @@ pipeline {
         
         stage('Export from Artifactory'){
             steps{
-                dir ('/StaticContent/global/ServiceExport/')
+                dir (env.PEGA_DEV + '/StaticContent/global/ServiceExport/')
                 echo 'Exporting file to artifactory'
                 sh "./gradlew exportingOperation"
                 echo 'Exported'
