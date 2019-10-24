@@ -371,5 +371,7 @@ task exportingOperation(type: Copy){
                 todir: "/TestePaste"
     	}
 	
+	delete "/TesteCopy/Arquivo.zip"
+	
 	println "Done"
 }
