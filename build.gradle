@@ -360,7 +360,7 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 }
 
 
-prepare( dependsOn: 'exportingOperation' ) {}
+//prepare( dependsOn: 'exportingOperation' ) {}
 
 task CopyFiles( type: Copy ) {
 
