@@ -387,15 +387,14 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 task copyFiles( type: Copy ) {
 
-    def orFile = file( '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport' ) 
-    from file( orFile )
+    from file('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
     into 'exportFolder'
 }
 
 task copyToPublish( dependsOn: copyFiles ) << {
 
     copy {
-        file( orFile ) {
+        file('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport') {
             includes '*.jar'
         }
         into 'exportFolder'
