@@ -364,7 +364,7 @@ task CopyFiles( type: Copy ) {
 
     from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
     //include $archiveName
-    into 'http://192.168.244.128:8040/artifactory/ims_dev_repo'
+    into 'exportFolder'
 }
 
 task exportingOperation( dependsOn: CopyFiles ) << {
@@ -380,10 +380,26 @@ task exportingOperation( dependsOn: CopyFiles ) << {
     copy {
         from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
 	//include $archiveName
-        into 'http://192.168.244.128:8040/artifactory/ims_dev_repo'
+        into 'exportFolder'
     }
 }
 
 task importOperation(type: org._10ne.gradle.rest.RestTask){
-	println "Importando"
+	apply plugin: "java"
+  	repositories {
+    		maven {
+        		url "http://192.168.244.128:8040/artifactory/ims_dev_repo"
+    		}
+	}
+  	configurations {
+    		drivers
+	}
+  	dependencies {
+    		drivers "com.company:chromedriver-mac32:2.8@bin"
+	}
+	
+  	task copyDrivers(type: Copy) {
+    		from configurations.drivers
+    		into "/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport"
+}
 }
