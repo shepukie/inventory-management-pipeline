@@ -74,7 +74,6 @@ pipeline {
         
         stage('Export to Artifactory'){
             steps{
-                //dir ('/StaticContent/global/ServiceExport/')
                 echo 'Exporting file to artifactory'
                 sh "./gradlew exportingOperation -PtargetURL=${env.PEGA_DEV} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
                 echo 'Exported'
