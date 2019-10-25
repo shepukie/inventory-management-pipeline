@@ -18,7 +18,7 @@ pipeline {
         ])
     }
 
-    stages {
+    /*stages {
 
         stage('Check for merge conflicts'){
             steps {
@@ -71,6 +71,7 @@ pipeline {
             }
           }
         }
+        */
         
         stage('Export to Artifactory'){
             steps{
