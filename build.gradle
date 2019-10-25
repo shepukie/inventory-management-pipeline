@@ -392,7 +392,7 @@ task copyFiles( type: Copy ) {
     into 'exportFolder'
 }
 
-task copyToPublish( dependsOn: copyToPublish ) << {
+task copyToPublish( dependsOn: copyFiles ) << {
 
     copy {
         file( orFile ) {
