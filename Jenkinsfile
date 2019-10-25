@@ -20,7 +20,7 @@ pipeline {
 
     stages {
 
-        /*stage('Check for merge conflicts'){
+        stage('Check for merge conflicts'){
             steps {
                 echo ('Clear workspace')
                 dir ('build/export') {
@@ -71,7 +71,7 @@ pipeline {
             }
           }
         }
-        */
+        
         
         stage('Export to Artifactory'){
             steps{
