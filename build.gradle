@@ -58,7 +58,6 @@ def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/
 artifactLocation = artifactLocation.replaceAll(/^https\:/, 'http:')
 def exportAsyncSetting = findProperty("exportAsyncSetting") ?:defaultExportAsyncSetting
 def importAsyncSetting = findProperty("exportAsyncSetting") ?:defaultImportAsyncSetting
-def artifactoryArchive = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/${applicationName}-${applicationVersion}.zip"
 
 group = artifactorGroup
 version = artifactVersion
@@ -386,7 +385,26 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 }
 
+task copyFiles( type: Copy ) {
+
+    def orFile = file( warFileLocation ) 
+    from file( orFile )
+    into 'exportFolder'
+}
+
+task copyToPublish( dependsOn: copyToPublish ) << {
+
+    copy {
+        file( orFile ) {
+            exclude '**/*.zip'
+        }
+        into 'exportFolder'
+    }
+}
+
+
 task importOperation(type: Download) {
-    src artifactoryArchive
-    dest "/backup"
+    //src artifactoryArchive
+    //dest "/backup"
+    println "teste"
 }
