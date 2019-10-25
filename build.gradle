@@ -374,7 +374,7 @@ task exportingOperation( dependsOn: CopyFiles ) << {
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
+	//uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
