@@ -105,13 +105,13 @@ pipeline {
             }
         }
 
-        stage('Fetch from Artifactory') {
+        /*stage('Fetch from Artifactory') {
 
             steps {
               echo 'Fetching application archive from Artifactory'
               sh  "./gradlew fetchFromArtifactory -PartifactoryUser=${ARTIFACTORY_USER} -PartifactoryPassword=${ARTIFACTORY_PASSWORD}"
             }
-        }
+        }*/
 
         stage('Create restore point') {
 
