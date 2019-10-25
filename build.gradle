@@ -383,33 +383,14 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 }
 
-task importOperation(type: org._10ne.gradle.rest.RestTask)  {
+task importOperation(type: Download)  {
 
-	group 'Pega'
-
-	def branch = findProperty('branch')
-	def targetURL = findProperty('targetURL')
+	def pathToSave = "/backup"
 	
-	httpMethod='post'
-	
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Import"
-
-	username = findProperty('pegaUsername')
-	password = findProperty('pegaPassword')
-	
-	//src artifactLocation
-	//username artifactoryUser
-	//password artifactoryPassword
-	//dest responseHandler
-	
-	contentType = groovyx.net.http.ContentType.JSON
-		responseHandler = { response ->
-		def archiveName2 = pxServiceExportPath
-
-		resultHandler.putResult("archiveName2", archiveName2)
-		println "Success"
-		println "${archiveName2}"
-	}
+	src artifactLocation
+	username artifactoryUser
+	password artifactoryPassword
+	dest pathToSave
 
 	doFirst {
 		// Validate project properties
