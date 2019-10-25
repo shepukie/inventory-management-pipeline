@@ -397,10 +397,10 @@ task importOperation(type: org._10ne.gradle.rest.RestTask)  {
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 	
-	src artifactLocation
-	username artifactoryUser
-	password artifactoryPassword
-	dest responseHandler
+	//src artifactLocation
+	//username artifactoryUser
+	//password artifactoryPassword
+	//dest responseHandler
 	
 	contentType = groovyx.net.http.ContentType.JSON
 		responseHandler = { response ->
