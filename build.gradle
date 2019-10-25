@@ -403,7 +403,7 @@ task copyToPublish( dependsOn: copyFiles ) << {
 }
 
 
-task importOperation(type: Download) {
+task importOperation {
     //src artifactoryArchive
     //dest "/backup"
     println "teste"
