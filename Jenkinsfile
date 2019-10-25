@@ -79,6 +79,13 @@ pipeline {
                 echo 'Exported'
             }
         }
+        
+        stage('Import from Artifactory'){
+            steps{
+                echo 'Import file from Artifactory'
+                sh "./gradlew importOperation -PtargetURL=${PEGA_DEV} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD} -Pbranch=${branchName}"
+            }
+        }
      
 
         /*stage('Export from Dev') {
