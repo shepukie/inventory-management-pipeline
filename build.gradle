@@ -394,7 +394,7 @@ task copyFiles( type: Copy ) {
 task copyToPublish( dependsOn: copyFiles ) << {
 
     copy {
-        file('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport') {
+        from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport') {
             includes '*.jar'
         }
         into 'exportFolder'
