@@ -94,14 +94,14 @@ pipeline {
         }
         */
 
-        /*stage('Publish to Artifactory') {
+        stage('Publish to Artifactory') {
 
             steps {
                 echo 'Publishing to Artifactory '
                 sh "./gradlew copyToPublish -PartifactoryUser=${ARTIFACTORY_USER} -PartifactoryPassword=${ARTIFACTORY_PASSWORD}"
                 sh "./gradlew artifactoryPublish -PartifactoryUser=${ARTIFACTORY_USER} -PartifactoryPassword=${ARTIFACTORY_PASSWORD}"
             }
-        } */
+        } 
         
 
         stage('Regression Tests') {
