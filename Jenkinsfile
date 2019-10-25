@@ -80,7 +80,7 @@ pipeline {
             }
         }
         
-        stage('Import from Artifactory'){
+        /*stage('Import from Artifactory'){
             steps{
                 echo 'Import file from Artifactory'
                 sh "./gradlew importOperation -PtargetURL=${PEGA_DEV} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD} -Pbranch=${branchName}"
@@ -88,7 +88,7 @@ pipeline {
         }
      
 
-        /*stage('Export from Dev') {
+        stage('Export from Dev') {
             steps {
                 echo 'Exporting application from Dev environment : ' + env.PEGA_DEV
                 sh "./gradlew performOperation -Dprpc.service.util.action=export -Dpega.rest.server.url=${env.PEGA_DEV}/PRRestService -Dpega.rest.username=${IMS_USER} -Dpega.rest.password=${IMS_PASSWORD} -Duser.temp.dir=${WORKSPACE}/tmp"
