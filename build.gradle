@@ -380,7 +380,7 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
-	contentType = groovyx.net.http.ContentType.JSON
+	//contentType = groovyx.net.http.ContentType.JSON
 
 	doFirst {
 		// Validate project properties
