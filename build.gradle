@@ -367,36 +367,31 @@ task CopyFiles( type: Copy ) {
     into '/Teste'
 }
 
-task exportingOperation( dependsOn: CopyFiles ) << {
+task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
+
+	group 'Pega'
 
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	
-	//uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
+	httpMethod='get'
+	
+	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 
-	//username = findProperty('pegaUsername')
-	//password = findProperty('pegaPassword')
+	username = findProperty('pegaUsername')
+	password = findProperty('pegaPassword')
 
-    copy {
-        from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
-	//include $archiveName
-        into 'Teste'
-    }
+	doFirst {
+		// Validate project properties
+		if (!project.hasProperty('targetURL')) {
+			throw new InvalidUserDataException("Must supply '-PtargetURL'")
+			}
+		}
+
 }
 
-task ImportFiles( type: Copy ) {
-
-    from ('Teste')
-    //include $archiveName
-    into '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
-}
-
-task importOperation( dependsOn: ImportFiles ) << {
+task importOperation {
 
 
-    copy {
-        from ('/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory')
-
-        into '/Teste'
-    }
+	println "teste"
 }
