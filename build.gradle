@@ -396,7 +396,7 @@ task copyToPublish( dependsOn: copyToPublish ) << {
 
     copy {
         file( orFile ) {
-            exclude '**/*.zip'
+            includes '*.jar'
         }
         into 'exportFolder'
     }
