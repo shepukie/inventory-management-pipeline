@@ -364,7 +364,7 @@ task CopyFiles( type: Copy ) {
 
     from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
     //include $archiveName
-    into 'artifactLocation'
+    into '/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory'
 }
 
 task exportingOperation( dependsOn: CopyFiles ) << {
@@ -380,16 +380,23 @@ task exportingOperation( dependsOn: CopyFiles ) << {
     copy {
         from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
 	//include $archiveName
-        into 'artifactLocation'
+        into '/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory'
     }
 }
 
-task importOperation(type: Download) << {
-	
-	def dir = '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
-	
-	src ''
-	username artifactoryUser
-	password artifactoryPassword
-	dest '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
+task ImportFiles( type: Copy ) {
+
+    from ('/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory')
+    //include $archiveName
+    into '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
+}
+
+task importOperation( dependsOn: ImportFiles ) << {
+
+
+    copy {
+        from ('/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory')
+
+        into '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
+    }
 }
