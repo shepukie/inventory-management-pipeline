@@ -404,7 +404,7 @@ task importOperation(type: org._10ne.gradle.rest.RestTask)  {
 	
 	contentType = groovyx.net.http.ContentType.JSON
 		responseHandler = { response ->
-		def archiveName2 = response.pxProcess.pxServiceExportPath
+		def archiveName2 = pxServiceExportPath
 
 		resultHandler.putResult("archiveName2", archiveName2)
 		println "Success"
