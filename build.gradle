@@ -393,7 +393,7 @@ task ImportFiles( type: Copy ) {
 
 task importOperation( dependsOn: ImportFiles ) << {
 	
-  	 Copy {
+  	 copy {
     		from artifactLocation
     		into "/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport"
 	}
