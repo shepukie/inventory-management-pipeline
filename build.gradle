@@ -359,14 +359,6 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 	}
 }
 
-
-task CopyFiles( type: Copy ) {
-
-    from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
-    //include $archiveName
-    into '/Teste'
-}
-
 task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 	group 'Pega'
@@ -400,10 +392,19 @@ task importOperation(type: org._10ne.gradle.rest.RestTask)  {
 	
 	httpMethod='post'
 	
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Import?branchName=${branch}"
+	uri = "${targetURL}/PRRestService/SystemManagement/v2/Import"
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
+	
+	contentType = groovyx.net.http.ContentType.JSON
+		responseHandler = { response ->
+		def archiveName2 = response.pyZipFileName[0].pyZipFileName
+
+		resultHandler.putResult("archiveName2", archiveName2)
+		println "Success"
+		println "${archiveName2}"
+	}
 
 	doFirst {
 		// Validate project properties
