@@ -388,7 +388,7 @@ task importOperation(type: Download) << {
 	
 	def dir = '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
 	
-	src 'http://192.168.244.128:8040/artifactory/webapp/#/artifacts/browse/tree/General/ims_dev_repo%2Fdmorg%2FInventoryManagementSystem%2F01.01.01_62%2FInventoryManagementSystem-01.01.01_62.zip'
+	src 'https://bintray.com/standAloneDownload/downloadArtifact?product=artifactory&artifactPath=/jfrog/artifactory-pro-rpms/org/artifactory/pro/rpm/jfrog-artifactory-pro/6.13.1/jfrog-artifactory-pro-6.13.1.rpm&callback_id=anonymous'
 	username artifactoryUser
 	password artifactoryPassword
 	dest '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
