@@ -362,14 +362,7 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 
 task CopyFiles( type: Copy ) {
 
-	group 'Pega'
-	
 
-	def targetURL = findProperty("targetURL")
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
-
-	username = findProperty('pegaUsername')
-	password = findProperty('pegaPassword')
 
     from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
     //include $archiveName
@@ -377,6 +370,15 @@ task CopyFiles( type: Copy ) {
 }
 
 task exportingOperation( dependsOn: CopyFiles ) << {
+
+	def branch = findProperty('branch')
+	def targetURL = findProperty('targetURL')
+	
+	def targetURL = findProperty("targetURL")
+	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
+
+	username = findProperty('pegaUsername')
+	password = findProperty('pegaPassword')
 
     copy {
         from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
