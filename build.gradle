@@ -384,7 +384,7 @@ task exportingOperation( dependsOn: CopyFiles ) << {
     }
 }
 
-task importOperation(type: org._10ne.gradle.rest.RestTask){
+task importOperation(type: Download){
 	apply plugin: "java"
   	repositories {
     		maven {
@@ -395,7 +395,7 @@ task importOperation(type: org._10ne.gradle.rest.RestTask){
     		drivers
 	}
   	dependencies {
-    		drivers "com.company:chromedriver-mac32:2.8@bin"
+    		drivers "http://192.168.244.128:8040/artifactory/ims_dev_repo"
 	}
 	
   	task copyDrivers(type: Copy) {
