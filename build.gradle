@@ -364,7 +364,7 @@ task CopyFiles( type: Copy ) {
 
     from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
     //include $archiveName
-    into 'exportFolder'
+    into 'artifactLocation'
 }
 
 task exportingOperation( dependsOn: CopyFiles ) << {
@@ -380,26 +380,21 @@ task exportingOperation( dependsOn: CopyFiles ) << {
     copy {
         from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
 	//include $archiveName
-        into 'exportFolder'
+        into 'artifactLocation'
     }
 }
 
-task importOperation(type: Download){
-	apply plugin: "java"
-  	repositories {
-    		maven {
-        		url "http://192.168.244.128:8040/artifactory/ims_dev_repo"
-    		}
-	}
-  	configurations {
-    		drivers
-	}
-  	dependencies {
-    		drivers "http://192.168.244.128:8040/artifactory/ims_dev_repo"
-	}
-	
-  	task copyDrivers(type: Copy) {
-    		from configurations.drivers
-    		into "/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport"
+task ImportFiles( type: Copy ) {
+
+    from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
+    //include $archiveName
+    into 'artifactLocation'
 }
+
+task importOperation( dependsOn: ImportFiles ) << {
+	
+  	 Copy {
+    		from artifactLocation
+    		into "/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport"
+	}
 }
