@@ -397,9 +397,14 @@ task importOperation(type: org._10ne.gradle.rest.RestTask)  {
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 	
+	src artifactLocation
+	username artifactoryUser
+	password artifactoryPassword
+	dest responseHandler
+	
 	contentType = groovyx.net.http.ContentType.JSON
 		responseHandler = { response ->
-		def archiveName2 = response.pyZipFileName[0].pyZipFileName
+		def archiveName2 = response.pxProcess.pxServiceExportPath
 
 		resultHandler.putResult("archiveName2", archiveName2)
 		println "Success"
