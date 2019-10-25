@@ -384,17 +384,12 @@ task exportingOperation( dependsOn: CopyFiles ) << {
     }
 }
 
-task ImportFiles( type: Copy ) {
-
-    from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
-    //include $archiveName
-    into 'artifactLocation'
-}
-
-task importOperation( dependsOn: ImportFiles ) << {
+task importOperation(type: Download) << {
 	
-  	 copy {
-    		from artifactLocation
-    		into "/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport"
-	}
+	def dir = '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
+	
+	src artifactLocation
+	username artifactoryUser
+	password artifactoryPassword
+	dest '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
 }
