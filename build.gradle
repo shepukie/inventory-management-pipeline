@@ -364,7 +364,7 @@ task CopyFiles( type: Copy ) {
 
     from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
     //include $archiveName
-    into 'artifactLocation'
+    into 'http://192.168.244.128:8040/artifactory/ims_dev_repo'
 }
 
 task exportingOperation( dependsOn: CopyFiles ) << {
@@ -380,27 +380,10 @@ task exportingOperation( dependsOn: CopyFiles ) << {
     copy {
         from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
 	//include $archiveName
-        into 'artifactLocation'
+        into 'http://192.168.244.128:8040/artifactory/ims_dev_repo'
     }
 }
 
 task importOperation(type: org._10ne.gradle.rest.RestTask){
-	group 'Pega'
-	
-	def branch = findProperty('branch')
-	def targetURL = findProperty('targetURL')
-	
-	httpMethod = 'post'
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Import"
-	
-	username = findProperty('pegaUsername')
-	password = findProperty('pegaPassword')
-
-	doFirst {
-		// Validate project properties
-		if (!project.hasProperty('targetURL')) {
-			throw new InvalidUserDataException("Must supply '-PtargetURL'")
-		}
-	
-	}
+	println "Importando"
 }
