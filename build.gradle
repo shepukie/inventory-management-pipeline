@@ -376,8 +376,8 @@ task exportingOperation( dependsOn: CopyFiles ) << {
 	
 	//uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 
-	username = findProperty('pegaUsername')
-	password = findProperty('pegaPassword')
+	//username = findProperty('pegaUsername')
+	//password = findProperty('pegaPassword')
 
     copy {
         from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
