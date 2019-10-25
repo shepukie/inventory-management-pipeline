@@ -391,3 +391,27 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 }
 
+task importOperation(type: org._10ne.gradle.rest.RestTask)  {
+
+	group 'Pega'
+
+	def branch = findProperty('branch')
+	def targetURL = findProperty('targetURL')
+	
+	httpMethod='post'
+	
+	uri = "${targetURL}/PRRestService/SystemManagement/v2/Import?branchName=${branch}"
+
+	username = findProperty('pegaUsername')
+	password = findProperty('pegaPassword')
+
+	doFirst {
+		// Validate project properties
+		if (!project.hasProperty('targetURL')) {
+			throw new InvalidUserDataException("Must supply '-PtargetURL'")
+			}
+		}
+
+}
+
+
