@@ -364,7 +364,7 @@ task CopyFiles( type: Copy ) {
 
     from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
     //include $archiveName
-    into '/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory'
+    into '/Teste'
 }
 
 task exportingOperation( dependsOn: CopyFiles ) << {
@@ -380,13 +380,13 @@ task exportingOperation( dependsOn: CopyFiles ) << {
     copy {
         from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
 	//include $archiveName
-        into '/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory'
+        into 'Teste'
     }
 }
 
 task ImportFiles( type: Copy ) {
 
-    from ('/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory')
+    from ('Teste')
     //include $archiveName
     into '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
 }
@@ -397,6 +397,6 @@ task importOperation( dependsOn: ImportFiles ) << {
     copy {
         from ('/var/opt/jfrog/artifactory/tomcat/work/Catalina/localhost/artifactory')
 
-        into '/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport'
+        into '/Teste'
     }
 }
