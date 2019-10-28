@@ -333,10 +333,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	
 	//archiveNameWithExt = findProperty(pzExportServiceHandler.archiveName)
 	
-	task extractName << {
-		archiveNameWithExt = configurations.getByName('${branch}').singleFile
-
-    	}
+	archiveNameWithExt = configurations.getByName('${branch}').singleFile
 	
 	println "Nome do arquivo: " + archiveNameWithExt
 
