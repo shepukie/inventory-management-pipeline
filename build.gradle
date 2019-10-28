@@ -333,8 +333,8 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	
 	//archiveNameWithExt = findProperty(pzExportServiceHandler.archiveName)
 	
-	task extractMyTar << {
-		File archiveNameWithExt = configurations.getByName('${branch}').singleFile
+	task extractName << {
+		archiveNameWithExt = configurations.getByName('${branch}').singleFile
 
     	}
 
