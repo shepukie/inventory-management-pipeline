@@ -402,5 +402,5 @@ task copyToPublish( dependsOn: copyFiles ) << {
         into 'exportFolder'
     }
     
-    println archiveNameWithExt
+    println archiveNameBranch
 }
