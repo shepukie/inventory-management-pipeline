@@ -331,7 +331,9 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
-	def configFile = findFile(exportFolder, branch)
+	responseHandler = { response ->
+	def configFile = response.pzExportServiceJSONWrapper.archiveNameExp
+	}
 
 	println "Nome do arquivo: " + configFile
 
