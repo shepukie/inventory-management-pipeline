@@ -54,7 +54,8 @@ def artifactoryRepoKey = findProperty("artifactoryRepoKey") ?:defaultArtifactory
 def archiveName = "${applicationName}_${applicationVersion}"
 def archiveNameWithExt = "${archiveName}.zip"
 def archiveNameBranch = "branchName=${branch}"
-def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/${applicationName}-${applicationVersion}_${buildNumber}.zip"
+//def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/${applicationName}-${applicationVersion}_${buildNumber}.zip"
+def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/"
 //replace https with http since the download location does not require sign in
 artifactLocation = artifactLocation.replaceAll(/^https\:/, 'http:')
 def exportAsyncSetting = findProperty("exportAsyncSetting") ?:defaultExportAsyncSetting
@@ -93,7 +94,7 @@ publishing {
 	publications {
 		main(MavenPublication) {
 			//artifact file(FileFinder.findFile(exportFolder, archiveNameWithExt))
-			artifact file(FileFinder.findFile(exportFolder,archiveNameBranch))
+			artifact file(FileFinder.findFile(exportFolder, archiveNameBranch))
 		}
 	}
 }
