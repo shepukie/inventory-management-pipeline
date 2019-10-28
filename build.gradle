@@ -341,6 +341,10 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 		if (!project.hasProperty('targetURL')) {
 			throw new InvalidUserDataException("Must supply '-PtargetURL'")
 		}
+		
+	def nomeArquivo = pyZipFileName
+	
+	println = pyZipFileName
 	
 	}
 }
