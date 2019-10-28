@@ -246,7 +246,7 @@ task merge(type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
 	description 'Merge a branch.'
 
-	def branch = findProperty('branch')
+	//def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	def mergePolicy = 'Highest'  //Alternative is to set it to New to create new ruleset versions on each merge
 
