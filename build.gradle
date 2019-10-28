@@ -21,8 +21,6 @@ plugins {
 	id "de.undercouch.download" version "3.2.0"
 }
 
-apply plugin: 'java'
-apply plugin: 'de.undercouch.download'
 apply plugin: "base"
 apply plugin: 'maven-publish'
 apply plugin: "org.tenne.rest"
@@ -52,8 +50,7 @@ def artifactoryURL = findProperty("artifactoryURL") ?:System.env.ARTIFACTORY_URL
 def artifactorGroup = findProperty("artifactoryGroup") ?:defaultArtifactoryGroup
 def artifactoryRepoKey = findProperty("artifactoryRepoKey") ?:defaultArtifactoryRepoKey
 def archiveName = "${applicationName}_${applicationVersion}"
-def archiveNameWithExt = "${archiveName}.zip"
-
+def archiveNameWithExt = "ARR7.4.zip"
 def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/${applicationName}-${applicationVersion}_${buildNumber}.zip"
 //replace https with http since the download location does not require sign in
 artifactLocation = artifactLocation.replaceAll(/^https\:/, 'http:')
@@ -63,7 +60,7 @@ def importAsyncSetting = findProperty("exportAsyncSetting") ?:defaultImportAsync
 group = artifactorGroup
 version = artifactVersion
 
-def exportFolder = findProperty("exportFolder") ?: FileFinder.insureDirectoryExists("${buildDir}/export")
+def exportFolder = findProperty("exportFolder") ?: FileFinder.insureDirectoryExists("/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport/")
 def importFolder = findProperty("importFolder") ?: FileFinder.insureDirectoryExists("${buildDir}/import")
 
 // Define ANT properties for the target defined in prpcServiceUtils
@@ -92,9 +89,7 @@ println "importAsyncSetting : ${importAsyncSetting}"
 publishing {
 	publications {
 		main(MavenPublication) {
-			
 			artifact file(FileFinder.findFile(exportFolder, archiveNameWithExt))
-
 		}
 	}
 }
@@ -116,43 +111,6 @@ artifactory {
 		publishArtifacts = true
 	}
 }
-
-task fetchFromArtifactory(type: Download) {
-	group 'Pega'
-	description 'Fetch application archive from artifactory'
-
-
-	// fetch all files in this folder
-	println "Bence: current files in importfolder:"
-	def list = []
-	def dir = new File(importFolder)
-	dir.eachFileRecurse (FileType.FILES) {
-		file ->
-	  	list << file
-	}
-	// print all files in folder
-	list.each {
-  	println it.path
-	}
-	
-	doFirst {
-		println 'First clean out import folder on the Jenkins system' +importFolder
-	  File folder = new File(importFolder)
-		folder.eachFileRecurse(FileType.FILES) {
-	    file ->
-	        file.delete()
-		}
-	}
-
-	println 'Downloading artifact from : ' + artifactLocation
-	src artifactLocation
-	username artifactoryUser
-	password artifactoryPassword
-	dest importFolder
-
-}
-
-
 
 
 task createRestorePoint(type: org._10ne.gradle.rest.RestTask) {
@@ -363,27 +321,24 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 		}
 	}
 }
-
-task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
-
+		 
+task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
-
+	
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	
-	httpMethod='get'
-	
+	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
-	contentType = groovyx.net.http.ContentType.JSON
-
+	
 	doFirst {
 		// Validate project properties
 		if (!project.hasProperty('targetURL')) {
 			throw new InvalidUserDataException("Must supply '-PtargetURL'")
-			}
 		}
-
+	
+	}
 }
