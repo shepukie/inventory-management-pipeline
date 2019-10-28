@@ -331,10 +331,10 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
-	responseHandler = { archiveNameExp ->
+	responseHandler = { response ->
 	
-		if (archiveNameExp != null) {
-			println "nome arquivo : ${archiveNameExp}"
+		if (response != null) {
+			println "nome arquivo : ${response.archiveName}"
 		} else {
 			println "não funcionou"
 		
