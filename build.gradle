@@ -342,3 +342,25 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	
 	}
 }
+
+task ImportOperation(type: org._10ne.gradle.rest.RestTask){
+	group 'Pega'
+
+	def branch = findProperty('branch')
+	def targetURL = findProperty('targetURL')
+	
+	httpMethod = 'post'
+	uri = "${targetURL}/SystemManagement/v2/Import?pyZipFileName=NewBranchTest2_20191028T133847_GMT.jar"
+	
+	username = findProperty('pegaUsername')
+	password = findProperty('pegaPassword')
+
+
+	doFirst {
+		// Validate project properties
+		if (!project.hasProperty('targetURL')) {
+			throw new InvalidUserDataException("Must supply '-PtargetURL'")
+		}
+	
+	}
+}
