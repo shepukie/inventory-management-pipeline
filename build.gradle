@@ -330,15 +330,14 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	
 	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
-
-	username = findProperty('pegaUsername')
-	password = findProperty('pegaPassword')
 	
 	responseHandler = { response ->
-	def archiveNameExport = response.pzExportServiceJSONWrapper.pzExportServiceHandler.archiveName
+		def archiveNameExport = response.pzExportServiceJSONWrapper.pzExportServiceHandler.archiveName
 	
 	}
 
+	username = findProperty('pegaUsername')
+	password = findProperty('pegaPassword')
 	
 	doFirst {
 		// Validate project properties
