@@ -334,7 +334,11 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 	
-	println "${buildDir}" + "   |   " + "?branchName=${branch}"
+	responseHandler = { response ->
+	def archiveNameExport = response.pzExportServiceJSONWrapper.pzExportServiceHandler.archiveName
+	
+	}
+
 	
 	doFirst {
 		// Validate project properties
@@ -342,11 +346,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 			throw new InvalidUserDataException("Must supply '-PtargetURL'")
 		}
 		
-	def nomeArquivo = pyZipFileName
-	
-	println = pyZipFileName
-	
-	}
+
 }
 
 task importOperation (type: org._10ne.gradle.rest.RestTask){
