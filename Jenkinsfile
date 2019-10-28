@@ -33,7 +33,7 @@ pipeline {
                 echo('Import file')
                 sh "./gradlew importOperation -PtargetURL=${PEGA_DEV} -Pbranch=${branchName} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
             }
-        }
+        }*/
 
         stage('Check for merge conflicts'){
             steps {
@@ -45,7 +45,7 @@ pipeline {
                 echo 'Determine Conflicts'
                 sh "./gradlew getConflicts -PtargetURL=${PEGA_DEV} -Pbranch=${branchName} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
             }
-        }*/
+        }
 
         stage('Run unit tests'){
           steps {
