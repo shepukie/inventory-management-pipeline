@@ -331,10 +331,19 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
-	def archiveNameExported = file(FileFinder.findFile(exportFolder, branch + date.format('yyyyMMdd.HHmm')))
-
+	responseHandler = { response ->
+	
+		if (responseArchiveName != null) {
+			archiveNameWithExt = ${responseArchiveName.toString()}"
+		} else {
+			archiveNameWithExt = ""
+		
+		}
+	}
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
+	
+	println "Nome do arquivo: " + archiveNameWithExt
 	
 	doFirst {
 		// Validate project properties
