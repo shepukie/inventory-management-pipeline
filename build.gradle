@@ -343,7 +343,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	}
 }
 
-task ImportOperation(type: org._10ne.gradle.rest.RestTask){
+task importOperation (type: org._10ne.gradle.rest.RestTask){
 	group 'Pega'
 
 	def branch = findProperty('branch')
