@@ -53,6 +53,7 @@ def artifactorGroup = findProperty("artifactoryGroup") ?:defaultArtifactoryGroup
 def artifactoryRepoKey = findProperty("artifactoryRepoKey") ?:defaultArtifactoryRepoKey
 def archiveName = "${applicationName}_${applicationVersion}"
 def archiveNameWithExt = "${archiveName}.zip"
+def branch = findProperty('branch')
 def archiveNameBranch = "branchName=${branch}"
 //def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/${applicationName}-${applicationVersion}_${buildNumber}.zip"
 def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/"
