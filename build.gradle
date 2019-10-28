@@ -334,16 +334,14 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	responseHandler = { responseArchiveName ->
 	
 		if (responseArchiveName != null) {
-			archiveNameWithExt = "${responseArchiveName.toString()}"
+			println "nome arquivo : ${responseArchiveName.toString()}"
 		} else {
-			archiveNameWithExt = ""
+			println "não funcionou"
 		
 		}
 	}
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
-	
-	println "Nome do arquivo: " + archiveNameWithExt
 	
 	doFirst {
 		// Validate project properties
