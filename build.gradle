@@ -332,14 +332,15 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
 	responseHandler = { response ->
-	
-		if (response != null) {
-			println "nome arquivo : ${response}"
-		} else {
+		def archiveNameExp = response.pyFileName
+
+		if (response != null){
+			println "nome arquivo " + archiveNameExp
+		}else{
 			println "não funcionou"
-		
 		}
 	}
+	
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 	
