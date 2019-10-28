@@ -337,7 +337,8 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 		archiveNameWithExt = configurations.getByName('${branch}').singleFile
 
     	}
-
+	
+	println "Nome do arquivo: " + archiveNameWithExt
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
