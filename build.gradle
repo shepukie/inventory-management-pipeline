@@ -215,7 +215,7 @@ task getConflicts(type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
 	description 'Check for branch conflict.'
 
-	def branch = findProperty("branch")
+	//def branch = findProperty("branch")
 	def targetURL = findProperty("targetURL")
 
 	httpMethod = 'get'
@@ -369,7 +369,7 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 	group 'Pega'
 
-	def branch = findProperty('branch')
+	//def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	
 	httpMethod='get'
