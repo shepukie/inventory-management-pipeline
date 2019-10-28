@@ -335,7 +335,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	def configFile = response.pzExportServiceJSONWrapper.archiveNameExp
 	}
 
-	println "Nome do arquivo: " + configFile
+	println "Nome do arquivo: " + responseHandler
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
