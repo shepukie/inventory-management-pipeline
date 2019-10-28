@@ -54,7 +54,7 @@ def artifactoryRepoKey = findProperty("artifactoryRepoKey") ?:defaultArtifactory
 def archiveName = "${applicationName}_${applicationVersion}"
 def archiveNameWithExt = "${archiveName}.zip"
 def branch = findProperty('branch')
-def archiveNameBranch = "branchName=${branch}"
+
 def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/${applicationName}-${applicationVersion}_${buildNumber}.zip"
 //replace https with http since the download location does not require sign in
 artifactLocation = artifactLocation.replaceAll(/^https\:/, 'http:')
@@ -93,8 +93,9 @@ println "importAsyncSetting : ${importAsyncSetting}"
 publishing {
 	publications {
 		main(MavenPublication) {
+			def branch = findProperty("branch")
 			//artifact file(FileFinder.findFile(exportFolder, archiveNameWithExt))
-			artifact file(FileFinder.findFile(exportFolder, archiveNameBranch))
+			artifact file(FileFinder.findFile(exportFolder, ${branch}))
 		}
 	}
 }
@@ -214,7 +215,7 @@ task getConflicts(type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
 	description 'Check for branch conflict.'
 
-	//def branch = findProperty("branch")
+	def branch = findProperty("branch")
 	def targetURL = findProperty("targetURL")
 
 	httpMethod = 'get'
@@ -245,7 +246,7 @@ task merge(type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
 	description 'Merge a branch.'
 
-	//def branch = findProperty('branch')
+	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	def mergePolicy = 'Highest'  //Alternative is to set it to New to create new ruleset versions on each merge
 
@@ -368,7 +369,7 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 	group 'Pega'
 
-	//def branch = findProperty('branch')
+	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	
 	httpMethod='get'
@@ -389,18 +390,17 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 }
 
 task copyFiles( type: Copy ) {
-
-    from file('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
+    def branch = findProperty('branch')
+    from file('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport/${branch}')
     into 'exportFolder'
 }
 
 task copyToPublish( dependsOn: copyFiles ) << {
-
+    def branch = findProperty('branch')
     copy {
-        from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport') {
+        from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport/${branch}') {
         }
         into 'exportFolder'
     }
-    
-    println archiveNameBranch
+
 }
