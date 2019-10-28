@@ -334,7 +334,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	responseHandler = { responseArchiveName ->
 	
 		if (responseArchiveName != null) {
-			println "nome arquivo : ${responseArchiveName.filename}"
+			println "nome arquivo : ${responseArchiveName}"
 		} else {
 			println "não funcionou"
 		
