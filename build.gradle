@@ -377,7 +377,7 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
-	//contentType = groovyx.net.http.ContentType.JSON
+	contentType = groovyx.net.http.ContentType.JSON
 
 	doFirst {
 		// Validate project properties
@@ -385,24 +385,5 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 			throw new InvalidUserDataException("Must supply '-PtargetURL'")
 			}
 		}
-
-}
-
-task copyFiles(type: Copy) {
-	from file('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
-	into 'exportFolder'
-	
-	rename { String fileName ->
-		fileName.replace(branchName, archiveNameWithExt)
-	}
-}
-
-task copyToPublish(dependsOn: copyFiles) << {
-
-	copy {
-		from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport}') {
-		}
-		into 'exportFolder'
-	}
 
 }
