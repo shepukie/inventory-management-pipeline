@@ -93,9 +93,9 @@ println "importAsyncSetting : ${importAsyncSetting}"
 publishing {
 	publications {
 		main(MavenPublication) {
-			def branch = findProperty("branch")
-			//artifact file(FileFinder.findFile(exportFolder, archiveNameWithExt))
-			artifact file(FileFinder.findFile(exportFolder, ${branch}))
+			
+			artifact file(FileFinder.findFile(exportFolder, archiveNameWithExt))
+
 		}
 	}
 }
@@ -389,18 +389,21 @@ task exportingOperation(type: org._10ne.gradle.rest.RestTask)  {
 
 }
 
-task copyFiles( type: Copy ) {
-    def branch = findProperty('branch')
-    from file('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport/${branch}')
-    into 'exportFolder'
+task copyFiles(type: Copy) {
+	from file('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
+	into 'exportFolder'
+	
+	rename { String fileName ->
+		fileName.replace(branchName, archiveNameWithExt)
+	}
 }
 
-task copyToPublish( dependsOn: copyFiles ) << {
-    def branch = findProperty('branch')
-    copy {
-        from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport/${branch}') {
-        }
-        into 'exportFolder'
-    }
+task copyToPublish(dependsOn: copyFiles) << {
+
+	copy {
+		from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport}') {
+		}
+		into 'exportFolder'
+	}
 
 }
