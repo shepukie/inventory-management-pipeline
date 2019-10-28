@@ -331,7 +331,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
-	rename {it, "${branch}_${buildNumber}.jar"}
+	rename {it, '${branch}_${buildNumber}.jar'}
 	
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
