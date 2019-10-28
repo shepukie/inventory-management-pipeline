@@ -332,7 +332,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
 	responseHandler = { response ->
-		def archiveNameExp = response.pyFileName[0]
+		def archiveNameExp = response.exportedArchiveName
 
 		if (response != null){
 			println "nome arquivo " + archiveNameExp
