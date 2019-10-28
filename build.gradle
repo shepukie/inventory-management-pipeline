@@ -334,7 +334,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 	
-	println "${buildDir}" + "   |   " + "branchName=${branch}"
+	println "${buildDir}" + "   |   " + "?branchName=${branch}"
 	
 	doFirst {
 		// Validate project properties
