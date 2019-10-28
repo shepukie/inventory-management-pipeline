@@ -331,7 +331,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
-	def exportArchiveName = fileFinder(exportFolder,"${branch}")
+	def exportArchiveName = findProperty(pzExportServiceHandler.archiveName)
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
@@ -341,9 +341,8 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 		if (!project.hasProperty('targetURL')) {
 			throw new InvalidUserDataException("Must supply '-PtargetURL'")
 		}
-		}
+	}
 		
-
 }
 
 task importOperation (type: org._10ne.gradle.rest.RestTask){
