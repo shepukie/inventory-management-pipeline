@@ -33,7 +33,7 @@ import groovy.util.XmlSlurper
 import groovy.xml.XmlUtil
 import groovy.io.FileType
 import java.io.File
-import org.gradle.api.file
+import org.gradle.api.file.*
 
 // Import the ANT targets defined in prpcServiceUtils for application import and export
 ant.importBuild 'prpcServiceUtils/scripts/utils/prpcServiceUtilsWrapper.xml'
