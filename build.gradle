@@ -334,14 +334,14 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	
 	task copyFiles( type: Copy ) {
 
-		from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport/${archiveName}_${buildNumber}.zip')
+		from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
 		into '${buildDir}/export'
 	}
 
 	task copyToPublish( dependsOn: copyFiles ) << {
 
 		copy {
-			from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport/${archiveName}_${buildNumber}.zip')
+			from ('/opt/tomcat/work/Catalina/localhost/prweb/StaticContent/global/ServiceExport')
 			into '${buildDir}/export'
 		}
 	}
