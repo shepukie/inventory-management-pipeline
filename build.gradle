@@ -330,7 +330,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	def targetURL = findProperty('targetURL')
 
 	httpMethod = 'get'
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branchName}&archiveName=${branchName}_${buildNumber}"
+	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branchName}"
 	
 	task copyFiles( type: Copy ) {
 
