@@ -328,13 +328,13 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
-	
-	httpMethod = 'get'
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 
 	task copyFiles( type: Copy ) {
 
-		from file(it)
+		from file(
+			httpMethod = 'get'
+			uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
+			)
 		into '${buildDir}/export'
 	}
 
