@@ -260,7 +260,7 @@ task getMergeStatus(type: org._10ne.gradle.rest.RestTask) {
 			println "Error while performing merge for: '${mergeId}'"
 			println "Errors: '${response.errors}'"
 
-			throw new BuildCancelledException("Error while merging for '${mergeId}' '${response.statusMessage}' '${response.errors}'")
+			//throw new BuildCancelledException("Error while merging for '${mergeId}' '${response.statusMessage}' '${response.errors}'")
 		}
 	}
 
