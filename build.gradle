@@ -330,7 +330,11 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	def targetURL = findProperty('targetURL')
 	
 	httpMethod = 'get'
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}".getName() 
+	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
+	
+	def ExtVar = getName(it)
+	
+	println "nome do arquivo? " + ExtVar
 	
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
