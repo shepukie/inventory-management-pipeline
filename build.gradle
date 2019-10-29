@@ -341,8 +341,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 
 		copy {
 			from ( 
-				httpMethod = 'get'
-				uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"  
+				it 
 			) 
 			into "${buildDir}/export"
 		}
