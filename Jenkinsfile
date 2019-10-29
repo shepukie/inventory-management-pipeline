@@ -27,7 +27,7 @@ pipeline {
             }
         }
         
-        stage('Import'){
+        /*stage('Import'){
             steps{
                 echo('Import file')
                 sh "./gradlew importOperation -PtargetURL=${PEGA_DEV} -Pbranch=${branchName} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
@@ -86,13 +86,13 @@ pipeline {
           }
         }
 
-        /*stage('Export from Dev') {
+        stage('Export from Dev') {
             steps {
                 echo 'Exporting application from Dev environment : ' + env.PEGA_DEV
                 sh "./gradlew performOperation -Dprpc.service.util.action=export -Dpega.rest.server.url=${env.PEGA_DEV}/PRRestService -Dpega.rest.username=${IMS_USER} -Dpega.rest.password=${IMS_PASSWORD} -Duser.temp.dir=${WORKSPACE}/tmp"
             }
         }
-       */
+       
 
         stage('Publish to Artifactory') {
 
@@ -117,7 +117,7 @@ pipeline {
               echo 'Fetching application archive from Artifactory'
               sh  "./gradlew fetchFromArtifactory -PartifactoryUser=${ARTIFACTORY_USER} -PartifactoryPassword=${ARTIFACTORY_PASSWORD}"
             }
-        }*/
+        }
 
         stage('Create restore point') {
 
@@ -126,7 +126,7 @@ pipeline {
                 sh "./gradlew createRestorePoint -PtargetURL=${PEGA_PROD} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
             }
         }
-        /*stage('Deploy to production') {
+        stage('Deploy to production') {
 
             steps {
               echo 'Deploying to production : ' + env.PEGA_PROD
