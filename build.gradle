@@ -330,7 +330,8 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	def targetURL = findProperty('targetURL')
 
 	httpMethod = 'get'
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}&archiveName=${branch}_${buildNumber}"
+	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?applicationName=${applicationName}&applicationVersion=${applicationVersion}&archiveName=${archiveName}&productName=${archiveNameWithExt}&productVersion=01.01.01&branchName=${branch}"
+	//"http://192.168.244.128:9080/prweb/PRRestService/SystemManagement/v2/Export?applicationName=${applicationName}&applicationVersion=${applicationVersion}&archiveName=${archiveName}&productName=${archiveNameWithExt}&productVersion=01.01.01&branchName=${branch}"
 	
 	task copyFiles( type: Copy ) {
 
