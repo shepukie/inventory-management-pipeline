@@ -19,13 +19,6 @@ pipeline {
     }
 
     stages {
-        
-        stage('Export'){
-            steps{
-                echo('Export file')
-                sh "./gradlew exportingOperation -PtargetURL=${PEGA_DEV} -Pbranch=${branchName} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
-            }
-        }
 
         stage('Check for merge conflicts'){
             steps {
@@ -70,14 +63,22 @@ pipeline {
             echo 'Evaluating merge Id from gradle script = ' + env.MERGE_ID
             timeout(time: 5, unit: 'MINUTES') {
                 echo "Setting the timeout for 1 min.."
-                retry(10) {
+                retry(1) {
                     echo "Merge is still being performed. Retrying..."
-                    sh "./gradlew getMergeStatus -PtargetURL=${env.PEGA_DEV} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
-                    echo "Merge Status : ${env.MERGE_STATUS}"
+                    //sh "./gradlew getMergeStatus -PtargetURL=${env.PEGA_DEV} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
+                    //echo "Merge Status : ${env.MERGE_STATUS}"
                 }
             }
           }
         }
+        
+        stage('Export'){
+            steps{
+                echo('Export file')
+                sh "./gradlew exportingOperation -PtargetURL=${PEGA_DEV} -Pbranch=${branchName} -PpegaUsername=${IMS_USER} -PpegaPassword=${IMS_PASSWORD}"
+            }
+        }
+        
         /*
         stage('Export from Dev') {
             steps {
