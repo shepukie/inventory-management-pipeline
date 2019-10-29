@@ -60,7 +60,7 @@ def importAsyncSetting = findProperty("exportAsyncSetting") ?:defaultImportAsync
 group = artifactorGroup
 version = artifactVersion
 
-def exportFolder = findProperty("exportFolder") ?: FileFinder.insureDirectoryExists("${buildDir}/exportFolder")
+def exportFolder = findProperty("exportFolder") ?: FileFinder.insureDirectoryExists("${buildDir}/export")
 def importFolder = findProperty("importFolder") ?: FileFinder.insureDirectoryExists("${buildDir}/import")
 
 // Define ANT properties for the target defined in prpcServiceUtils
@@ -325,13 +325,30 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
 	
-	println "Esse é o nome do arquivo ${archiveName} | esse é o caminho que está no publish: ${buildDir}/export"
-	
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	
-	httpMethod = 'get'
-	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
+	task exportCopy( type: Copy ) {
+
+		from ( 	
+			httpMethod = 'get'
+			uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}" 
+			)
+		into "${buildDir}/export"
+	}
+
+	task copyFilesPublish( dependsOn: exportCopy ) << {
+
+		copy {
+			from ( 
+				httpMethod = 'get'
+				uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"  
+			) 
+			into "${buildDir}/export"
+		}
+	}
+
+
 	
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
