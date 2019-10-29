@@ -349,7 +349,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 		}
 	}
 
-	println it
+	println "isso: it"
 	
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
