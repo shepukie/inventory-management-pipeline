@@ -335,8 +335,6 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 	
-	println "nome da pasta: " + exportFolder + " | nome do arquivo: " + archiveNameWithExt
-	
 	doFirst {
 		// Validate project properties
 		if (!project.hasProperty('targetURL')) {
