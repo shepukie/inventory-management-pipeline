@@ -50,7 +50,7 @@ def artifactoryURL = findProperty("artifactoryURL") ?:System.env.ARTIFACTORY_URL
 def artifactorGroup = findProperty("artifactoryGroup") ?:defaultArtifactoryGroup
 def artifactoryRepoKey = findProperty("artifactoryRepoKey") ?:defaultArtifactoryRepoKey
 def archiveName = "${applicationName}_${applicationVersion}"
-def archiveNameWithExt = "ARR7.4.zip"
+def archiveNameWithExt = "${archiveName}"
 def artifactLocation = findProperty("artifactoryLocation") ?:"${artifactoryURL}/${artifactoryRepoKey}/${artifactorGroup}/${applicationName}/${artifactVersion}/${applicationName}-${applicationVersion}_${buildNumber}.zip"
 //replace https with http since the download location does not require sign in
 artifactLocation = artifactLocation.replaceAll(/^https\:/, 'http:')
@@ -331,8 +331,6 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
 	
-	rename (it, "${branch}_${buildNumber}.jar")
-	
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 	
@@ -352,7 +350,7 @@ task importOperation (type: org._10ne.gradle.rest.RestTask){
 	def targetURL = findProperty('targetURL')
 	
 	httpMethod = 'post'
-	uri = "${targetURL}/SystemManagement/v2/Import?pyZipFileName=NewBranchTest2_20191028T133847_GMT.jar"
+	uri = "${targetURL}/SystemManagement/v2/Import?pyZipFileName=${archiveName}"
 	
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
