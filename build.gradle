@@ -330,27 +330,7 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	
 	httpMethod = 'get'
 	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}" 
-	
-	task exportCopy( type: Copy ) {
 
-		from ( 	
-			it
-			)
-		into "${buildDir}/export"
-	}
-
-	task copyFilesPublish( dependsOn: exportCopy ) << {
-
-		copy {
-			from ( 
-				it 
-			) 
-			into "${buildDir}/export"
-		}
-	}
-
-	println "isso: it"
-	
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 	
