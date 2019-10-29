@@ -210,6 +210,8 @@ task merge(type: org._10ne.gradle.rest.RestTask) {
 
 	httpMethod = 'post'
 	uri = "${targetURL}/api/v1/branches/${branch}/merge?mergePolicy=${mergePolicy}"
+	
+	println "outro param passado: ${mergePolicy"
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
