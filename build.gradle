@@ -329,22 +329,24 @@ task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 
-	task copyFiles( type: Copy ) {
+	httpMethod = 'get'
+	uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
+	
+	//task copyFiles( type: Copy ) {
 
-		from file(
-			httpMethod = 'get'
-			uri = "${targetURL}/PRRestService/SystemManagement/v2/Export?branchName=${branch}"
-			)
-		into '${buildDir}/export'
-	}
+	//	from file(
 
-	task copyToPublish( dependsOn: copyFiles ) << {
+		//	)
+		//into '${buildDir}/export'
+	//}
 
-		copy {
-			from (it) 
-			into '${buildDir}/export'
-		}
-	}
+	//task copyToPublish( dependsOn: copyFiles ) << {
+
+		//copy {
+			//from (it) 
+			//into '${buildDir}/export'
+		//}
+	//}
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
