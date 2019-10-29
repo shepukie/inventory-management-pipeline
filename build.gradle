@@ -325,7 +325,7 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 task exportingOperation (type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
 	
-	println "Esse é o nome do arquivo ${archiveName}"
+	println "Esse é o nome do arquivo ${archiveName} | esse é o caminho que está no publish: ${buildDir}/export"
 	
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
