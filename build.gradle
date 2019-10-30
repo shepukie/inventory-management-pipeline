@@ -207,6 +207,7 @@ task merge(type: org._10ne.gradle.rest.RestTask) {
 	def branch = findProperty('branch')
 	def targetURL = findProperty('targetURL')
 	def mergePolicy = 'Highest'  //Alternative is to set it to New to create new ruleset versions on each merge
+	def mergeId = resultHandler.getResult("merge.id") ?: ""
 
 	httpMethod = 'post'
 	uri = "${targetURL}/api/v1/branches/${branch}/merge?${java.net.URLEncoder.encode(mergeId, "UTF-8")}"
